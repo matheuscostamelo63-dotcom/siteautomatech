@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Environment, Center, AccumulativeShadows, RandomizedLight } from '@react-three/drei';
+import { Float, Environment, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
 const LogoShape = () => {
@@ -29,7 +29,7 @@ const LogoShape = () => {
     const extrudeSettings = {
         steps: 2,
         depth: 0.4,
-        beverEnabled: true,
+        bevelEnabled: true,
         bevelThickness: 0.1,
         bevelSize: 0.1,
         bevelOffset: 0,
@@ -81,10 +81,6 @@ export default function ThreeLogo() {
                 <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
                     <LogoShape />
                 </Float>
-
-                <AccumulativeShadows temporal frames={100} color="#000000" colorBlend={2} opacity={0.6} scale={10} position={[0, -2.5, 0]}>
-                    <RandomizedLight amount={8} radius={4} ambient={0.5} intensity={1} position={[5, 5, -10]} bias={0.001} />
-                </AccumulativeShadows>
 
                 <Environment preset="city" />
             </Canvas>
