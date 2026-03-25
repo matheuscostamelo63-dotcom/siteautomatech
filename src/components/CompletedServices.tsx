@@ -28,11 +28,11 @@ const projects = [
     },
     {
         number: '04',
-        title: 'Fabricação e Montagem Industrial',
-        client: '',
-        category: 'Industrial',
+        title: 'Fabricação Industrial',
+        client: 'Vila Nova Agroindustrial',
+        category: 'Metalúrgica',
         year: '2024',
-        image: '/images/fabricacao-montagem.jpg',
+        image: '/images/fabricacao-industrial.jpg',
     },
 ];
 
