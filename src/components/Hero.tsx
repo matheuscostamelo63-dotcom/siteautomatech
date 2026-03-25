@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Zap, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Hero3DBackground from './Hero3DBackground';
+import ThreeLogo from './ThreeLogo';
 
 const COMPETENCIAS = [
     "Excelência",
@@ -33,6 +34,16 @@ const Hero = () => {
             </div>
 
             <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-5rem)]">
+                {/* 3D Logo Section */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    className="w-full max-w-md mx-auto -mb-12 md:-mb-24"
+                >
+                    <ThreeLogo />
+                </motion.div>
+
                 <div className="w-full max-w-4xl mx-auto text-center">
 
                     <motion.div
