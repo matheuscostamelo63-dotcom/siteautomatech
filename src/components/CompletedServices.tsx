@@ -29,7 +29,7 @@ const projects = [
     {
         number: '04',
         title: 'Fabricação Industrial',
-        client: 'Vila Nova Agroindustrial',
+        client: '',
         category: 'Metalúrgica',
         year: '2024',
         image: '/images/fabricacao-industrial.jpg',
