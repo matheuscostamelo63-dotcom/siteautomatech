@@ -1,4 +1,4 @@
-import { useRef, Suspense } from 'react';
+import { useRef, Suspense, useLayoutEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Float, Environment, Center, ContactShadows, PresentationControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,6 +6,24 @@ import * as THREE from 'three';
 const Model = ({ url }: { url: string }) => {
     const { scene } = useGLTF(url);
     const modelRef = useRef<THREE.Group>(null);
+
+    useLayoutEffect(() => {
+        scene.traverse((obj) => {
+            if (obj instanceof THREE.Mesh) {
+                // Apply a vivid metallic material to all meshes
+                obj.material = new THREE.MeshPhysicalMaterial({
+                    color: obj.material.color || "#ffffff",
+                    metalness: 1,
+                    roughness: 0.1,        // Sharp reflections
+                    clearcoat: 1,          // Extra glossy layer
+                    clearcoatRoughness: 0.05,
+                    envMapIntensity: 3,     // Boost reflection brightness
+                });
+                obj.castShadow = true;
+                obj.receiveShadow = true;
+            }
+        });
+    }, [scene]);
 
     useFrame((state) => {
         if (!modelRef.current) return;
@@ -19,9 +37,8 @@ const Model = ({ url }: { url: string }) => {
         <primitive 
             ref={modelRef} 
             object={scene} 
-            scale={1.5} 
+            scale={1.8} 
             position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
         />
     );
 };
