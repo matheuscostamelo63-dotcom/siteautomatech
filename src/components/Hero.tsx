@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Zap, Target } from 'lucide-react';
+import { ArrowRight, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Hero3DBackground from './Hero3DBackground';
 import ThreeModel from './ThreeModel';
