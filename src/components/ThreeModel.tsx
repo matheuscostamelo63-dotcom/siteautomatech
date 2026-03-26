@@ -37,7 +37,7 @@ const Model = ({ url }: { url: string }) => {
         <primitive 
             ref={modelRef} 
             object={scene} 
-            scale={1.8} 
+            scale={1.1} 
             position={[0, 0, 0]}
         />
     );
