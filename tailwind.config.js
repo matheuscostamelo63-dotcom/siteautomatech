@@ -55,7 +55,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        heading: ["Space Grotesk", "sans-serif"],
+        heading: ["Outfit", "sans-serif"],
       },
     },
   },
