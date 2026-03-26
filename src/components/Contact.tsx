@@ -63,7 +63,7 @@ const Contact = () => {
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.1652433068!2d-47.9942485!3d-1.2941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a5ee1161d9a5b3%3A0x7d8a9e7f5e8a9e7f!2sCastanhal%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1711475000000!5m2!1spt-BR!2sbr" 
                             width="100%" 
                             height="100%" 
-                            style={{ border: 0, filter: 'grayscale(1) invert(0.9) contrast(1.2) brightness(0.9)' }} 
+                            style={{ border: 0 }} 
                             allowFullScreen 
                             loading="lazy" 
                             referrerPolicy="no-referrer-when-downgrade"
