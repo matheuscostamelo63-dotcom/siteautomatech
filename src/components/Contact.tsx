@@ -1,7 +1,50 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        nome: '',
+        empresa: '',
+        email: '',
+        mensagem: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setStatus('idle');
+        
+        try {
+            const response = await fetch('https://eok78i7jnzs4mhs.m.pipedream.net', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nome: formData.nome,
+                    empresa: formData.empresa,
+                    email: formData.email,
+                    mensagem: formData.mensagem
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ nome: '', empresa: '', email: '', mensagem: '' });
+                setTimeout(() => setStatus('idle'), 5000); // clear success msg after 5s
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            setStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <footer id="contato" className="bg-secondary text-secondary-foreground pt-24 pb-12 border-t border-border">
             <div className="container mx-auto px-4">
@@ -80,27 +123,70 @@ const Contact = () => {
                         transition={{ duration: 0.7, delay: 0.4 }}
                         className="bg-background/50 backdrop-blur-sm p-8 rounded-2xl border border-border h-fit"
                     >
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Nome</label>
-                                    <input type="text" className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" placeholder="João Silva" />
+                                    <input 
+                                        type="text" 
+                                        required
+                                        value={formData.nome}
+                                        onChange={(e) => setFormData({...formData, nome: e.target.value})}
+                                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" 
+                                        placeholder="João Silva" 
+                                    />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Empresa</label>
-                                    <input type="text" className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" placeholder="Indústria S.A." />
+                                    <input 
+                                        type="text" 
+                                        value={formData.empresa}
+                                        onChange={(e) => setFormData({...formData, empresa: e.target.value})}
+                                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" 
+                                        placeholder="Indústria S.A." 
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">E-mail corporativo</label>
-                                <input type="email" className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" placeholder="joao@empresa.com" />
+                                <input 
+                                    type="email" 
+                                    required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                    className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" 
+                                    placeholder="joao@empresa.com" 
+                                />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Mensagem ou Projeto</label>
-                                <textarea className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors h-48 resize-none" placeholder="Conte-nos brevemente sobre sua necessidade..." />
+                                <textarea 
+                                    required
+                                    value={formData.mensagem}
+                                    onChange={(e) => setFormData({...formData, mensagem: e.target.value})}
+                                    className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors h-48 resize-none" 
+                                    placeholder="Conte-nos brevemente sobre sua necessidade..." 
+                                />
                             </div>
-                            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-4 rounded-lg transition-colors">
-                                Enviar Solicitação
+
+                            {status === 'success' && (
+                                <div className="p-4 bg-green-500/10 text-green-500 rounded-lg text-sm font-medium border border-green-500/20">
+                                    Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.
+                                </div>
+                            )}
+                            
+                            {status === 'error' && (
+                                <div className="p-4 bg-red-500/10 text-red-500 rounded-lg text-sm font-medium border border-red-500/20">
+                                    Houve um erro ao enviar sua mensagem. Por favor, tente novamente.
+                                </div>
+                            )}
+
+                            <button 
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 disabled:opacity-70 disabled:cursor-not-allowed text-primary-foreground font-semibold px-6 py-4 rounded-lg transition-colors"
+                            >
+                                {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
                             </button>
                         </form>
                     </motion.div>

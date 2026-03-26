@@ -36,7 +36,7 @@ const Header = () => {
                 >
                     <a href="#" className="flex items-center gap-3">
                         <img 
-                            src="/images/logo-creation.png" 
+                            src="/images/logo-maos.png" 
                             alt="Automatech Logo" 
                             className="h-10 md:h-12 w-auto mix-blend-screen brightness-125"
                         />
