@@ -10,38 +10,39 @@ const LogoShape = () => {
     const { shape1, shape2 } = useMemo(() => {
         // Top/Left part of the "A"
         const s1 = new THREE.Shape();
-        s1.moveTo(0, 3);          // Tip
-        s1.lineTo(-2.2, -1);      // Left bottom
-        s1.lineTo(-0.2, -1);      // inner left
-        s1.lineTo(0.6, 0.4);      // inner diagonal cut
+        s1.moveTo(0, 2.5);          // Top tip
+        s1.lineTo(-1.8, -1);        // Left bottom
+        s1.lineTo(-0.4, -1);        // Bottom inner left
+        s1.lineTo(-0.1, -0.4);      // inner gap start
+        s1.lineTo(1.2, 0.8);        // inner gap end (cuts the right side higher)
         s1.closePath();
 
         // Bottom/Right piece
         const s2 = new THREE.Shape();
-        s2.moveTo(0.8, 0.2);       // top notch
-        s2.lineTo(2.2, -1);       // right bottom
-        s2.lineTo(0.2, -1);       // bottom inner
+        s2.moveTo(1.4, 0.6);        // Top of the bottom piece
+        s2.lineTo(2.0, -1);         // Right bottom
+        s2.lineTo(0.2, -1);         // Bottom inner right
         s2.closePath();
 
         return { shape1: s1, shape2: s2 };
     }, []);
 
     const extrudeSettings = {
-        steps: 2,
-        depth: 0.4,
+        steps: 1,
+        depth: 0.5,
         bevelEnabled: true,
-        bevelThickness: 0.1,
-        bevelSize: 0.1,
+        bevelThickness: 0.05,
+        bevelSize: 0.05,
         bevelOffset: 0,
-        bevelSegments: 5
+        bevelSegments: 4
     };
 
     useFrame((state) => {
         if (!meshRef.current) return;
         // Slow constant rotation
-        meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.4;
+        meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
         // Subtle tilt
-        meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.1;
+        meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.15) * 0.08;
     });
 
     return (
@@ -49,20 +50,24 @@ const LogoShape = () => {
             <Center>
                 <mesh castShadow receiveShadow>
                     <extrudeGeometry args={[shape1, extrudeSettings]} />
-                    <meshStandardMaterial 
+                    <meshPhysicalMaterial 
                         color="#ffffff" 
                         metalness={1} 
-                        roughness={0.15} 
-                        envMapIntensity={1.5}
+                        roughness={0.25} 
+                        clearcoat={1}
+                        clearcoatRoughness={0.1}
+                        envMapIntensity={2}
                     />
                 </mesh>
                 <mesh castShadow receiveShadow>
                     <extrudeGeometry args={[shape2, extrudeSettings]} />
-                    <meshStandardMaterial 
+                    <meshPhysicalMaterial 
                         color="#ffffff" 
                         metalness={1} 
-                        roughness={0.15} 
-                        envMapIntensity={1.5}
+                        roughness={0.25} 
+                        clearcoat={1}
+                        clearcoatRoughness={0.1}
+                        envMapIntensity={2}
                     />
                 </mesh>
             </Center>
