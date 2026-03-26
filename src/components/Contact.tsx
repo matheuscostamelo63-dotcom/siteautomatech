@@ -5,7 +5,7 @@ const Contact = () => {
     return (
         <footer id="contato" className="bg-secondary text-secondary-foreground pt-24 pb-12 border-t border-border">
             <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 lg:gap-24 mb-16">
+                <div className="grid lg:grid-cols-3 gap-12 mb-16">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -15,7 +15,7 @@ const Contact = () => {
                         <h2 className="text-4xl font-heading font-bold mb-6">
                             Vamos construir o futuro da <span className="text-primary">energia</span> juntos?
                         </h2>
-                        <p className="text-muted-foreground text-lg mb-8 leading-relaxed max-w-md">
+                        <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                             Entre em contato com nossa equipe de especialistas. Desenvolvemos estudos de viabilidade e projetos sob medida para o seu desafio industrial.
                         </p>
 
@@ -57,10 +57,28 @@ const Contact = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: false }}
                         transition={{ duration: 0.7, delay: 0.2 }}
+                        className="rounded-2xl overflow-hidden border border-border h-[400px] lg:h-full min-h-[300px]"
+                    >
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.1652433068!2d-47.9942485!3d-1.2941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a5ee1161d9a5b3%3A0x7d8a9e7f5e8a9e7f!2sCastanhal%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1711475000000!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style={{ border: 0, filter: 'grayscale(1) invert(0.9) contrast(1.2) brightness(0.9)' }} 
+                            allowFullScreen 
+                            loading="lazy" 
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
                         className="bg-background/50 backdrop-blur-sm p-8 rounded-2xl border border-border"
                     >
                         <form className="space-y-6">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Nome</label>
                                     <input type="text" className="w-full bg-secondary border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors" placeholder="João Silva" />
