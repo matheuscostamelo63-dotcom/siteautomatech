@@ -34,7 +34,12 @@ const Header = () => {
                     transition={{ duration: 0.5 }}
                     className="flex items-center gap-2"
                 >
-                    <a href="#" className="flex items-center gap-2">
+                    <a href="#" className="flex items-center gap-3">
+                        <img 
+                            src="/images/logo-creation.png" 
+                            alt="Automatech Logo" 
+                            className="h-10 md:h-12 w-auto mix-blend-screen brightness-125"
+                        />
                         <h1 className="text-2xl md:text-3xl font-heading font-bold tracking-wider">
                             <span className="text-primary" translate="no">AUTO</span>
                             <span className="text-foreground" translate="no">MATECH</span>
