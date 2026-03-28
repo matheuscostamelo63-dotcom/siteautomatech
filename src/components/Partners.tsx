@@ -7,6 +7,7 @@ const Partners = () => {
         { name: 'Vila Nova Agroindustrial', image: '/partners/vila-nova.png' },
         { name: 'Denpasa', image: '/partners/denpasa.png' },
         { name: 'Oleoplan', image: '/partners/oleoplan.png' },
+        { name: 'AWK', image: '/images/awk.png' },
     ];
 
     return (
