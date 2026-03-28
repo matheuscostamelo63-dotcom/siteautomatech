@@ -152,6 +152,32 @@ const CompletedServices = () => {
                     </motion.div>
                 ))}
             </div>
+
+            {/* Portfolio Link Button */}
+            <div className="container mx-auto px-6 mt-16 flex justify-center pb-8">
+                <motion.a
+                    href="https://portifolioautomatech.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="group flex items-center gap-4 px-8 py-3 rounded-full border border-border/40 bg-background/50 hover:bg-border/20 backdrop-blur-sm text-muted-foreground hover:text-foreground transition-all duration-500"
+                >
+                    <span className="text-xs font-sans font-bold tracking-[0.2em] uppercase">
+                        Acessar Portfólio Completo
+                    </span>
+                    <motion.div
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="text-primary group-hover:text-foreground transition-colors duration-500"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </motion.div>
+                </motion.a>
+            </div>
         </section>
     );
 };
