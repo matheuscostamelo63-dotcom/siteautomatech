@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 
 const Partners = () => {
     const partners = [
-        { name: 'RG Industrial', image: '/partners/rg-industrial.png' },
         { name: 'Master Operações Portuárias', image: '/partners/master.png' },
         { name: 'Vila Nova Agroindustrial', image: '/partners/vila-nova.png' },
         { name: 'Denpasa', image: '/partners/denpasa.png' },
